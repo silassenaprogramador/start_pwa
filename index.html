@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet"> 
+
+  <!-- CSS  -->
+  <link href="./assets/css/fonts.css" rel="stylesheet">
+  <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <link rel="manifest" href="./manifest.json">
+  <title>Music App</title>
+</head>
+<body style="background-color: peachpuff;">
+
+  
+    <div id="menu">
+        
+    </div>
+
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+
+          <h1 class="header center red-text">Guia de Ofertas</h1>
+          <div class="row center">
+            <h5 class="header col s12 light">Acompanhe as melhores ofertas de sua cidade e região</h5>
+          </div>
+
+          <div class="row center">
+
+            <select class="browser-default" name="slc_cidade" id="slc_cidade">
+              <option value="" disabled selected>Selecione a Cidade</option>
+              <option value=""> -- Selecione -- </option>
+            </select>
+
+            <button class="btn waves-effect waves-light" type="button" onclick="buscar()" name="action" style="background-color: red;margin-top: 10px;">Buscar
+              <i class="material-icons right">search</i>
+            </button>
+
+          </div>
+          <br><br>
+
+        </div>
+    </div>
+
+
+   
+
+  <!--  Scripts-->
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/materialize.js"></script>
+  <script src="./assets/js/init.js"></script>
+  <script src="./assets/js/sweetalert2@9.js"></script>
+  <script src="./assets/js/index.js"></script>
+  <script>
+
+    function buscar(){
+
+      let url = '';
+
+      if( ($('#slc_cidade').val() != "") && ($('#slc_cidade').val() != null) ){
+
+        var slug_cidade = $('#slc_cidade').val();
+        var link_page_categoria = `${url}/${slug_cidade}`;
+        window.location.href = link_page_categoria;
+      }
+      else{
+
+        Swal.fire('Erro','Selecione uma cidade para continuar','error');
+      }
+
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+
+  
+    $(document).ready(function(){
+      
+        $('#menu').load('./assets/includes/menu.html', function(){
+          $('.sidenav').sidenav();
+        }); 
+
+        $('select').formSelect();      
+       
+    });
+
+  </script>
+
+   
+</body>
+</html>
